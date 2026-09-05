@@ -5,30 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Green Level TSA — Technology Student Association</title>
 <meta name="description" content="Green Level High School's chapter of the Technology Student Association. Learning to lead in a technical world.">
-<link rel="icon" href="images/logo.png">
+<link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem("glTsaTheme");
+      if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 
 <header class="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="brand">
-      <span class="brand-badge"><img src="images/logo.png" alt="Green Level TSA chapter emblem"></span>
+      <span class="brand-badge"><img src="logo.png" alt="Green Level TSA chapter emblem"></span>
       <span class="brand-text">
         <strong>Green Level TSA</strong>
         <span>Technology Student Association</span>
       </span>
     </a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
-    <ul class="nav-links">
-      <li><a href="index.html" aria-current="page">Home</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="dates.html">Important Dates</a></li>
-      <li><a href="events.html">Events</a></li>
-    </ul>
+    <div class="nav-actions">
+      <ul class="nav-links">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="dates.html">Important Dates</a></li>
+        <li><a href="events.html">Events</a></li>
+      </ul>
+      <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8" stroke-linecap="round"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
   </div>
 </header>
 
@@ -47,12 +61,36 @@
       <h1>Learning to lead in a technical world.</h1>
       <p class="lead">Green Level High School's chapter of the Technology Student Association — where students explore engineering, technology, science, and design through competition, community service, and teamwork.</p>
       <div class="btn-row" style="margin-top:26px;">
-        <a class="btn btn-primary" href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Follow us on Instagram</a>
+        <a class="btn btn-primary" href="events.html#event-explorer">Explore events</a>
+        <button class="btn btn-ghost quiz-trigger" type="button">Find your event →</button>
         <a class="btn btn-ghost" href="resources.html#contact">Meet the officers</a>
       </div>
     </div>
     <div class="hero-seal">
-      <img src="images/logo.png" alt="Green Level TSA logo">
+      <img src="logo.png" alt="Green Level TSA logo">
+    </div>
+  </div>
+</section>
+
+<section class="tight stats-section" aria-label="Chapter stats at a glance">
+  <div class="container">
+    <div class="stats-grid" data-reveal-group>
+      <div class="stat reveal-scale">
+        <span class="stat-number" data-target="42" data-suffix="+">0</span>
+        <span class="stat-label">Competitive events nationally</span>
+      </div>
+      <div class="stat reveal-scale">
+        <span class="stat-number" data-target="100" data-suffix="+">0</span>
+        <span class="stat-label">Skills you can explore</span>
+      </div>
+      <div class="stat reveal-scale">
+        <span class="stat-word">STEM</span>
+        <span class="stat-label">Engineering • Technology • Design</span>
+      </div>
+      <div class="stat reveal-scale">
+        <span class="stat-number" data-target="1">0</span>
+        <span class="stat-label">Green Level chapter, endless possibilities</span>
+      </div>
     </div>
   </div>
 </section>
@@ -75,6 +113,26 @@
         <li class="reveal">Work alongside a team that shares your interest in technology and problem solving</li>
       </ul>
       <p style="margin-top:18px;"><span class="todo-tag">Add meeting details</span> &nbsp; <span style="color:var(--muted); font-size:0.9rem;">Chapter meetings: day, time, and room to be added.</span></p>
+
+      <h3 style="margin-top:32px;">New to TSA? Start here</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What do we do at meetings? <span class="faq-icon" aria-hidden="true">+</span></button>
+          <div class="faq-answer"><p>Members work on their competitive events, collaborate with teammates, plan service projects, and get ready for Regionals, States, and Nationals.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">Do I need experience? <span class="faq-icon" aria-hidden="true">+</span></button>
+          <div class="faq-answer"><p>No — TSA has events built for total beginners as well as returning competitors, so there's an entry point for every skill level.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">How do I join? <span class="faq-icon" aria-hidden="true">+</span></button>
+          <div class="faq-answer"><p>Attend a chapter meeting, talk to an officer, and complete the membership application on our <a href="resources.html">Resources page</a>.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">What's the difference between Regionals, States, and Nationals? <span class="faq-icon" aria-hidden="true">+</span></button>
+          <div class="faq-answer"><p>Every member attends Regionals and States; placing in the top 3 at States qualifies you for Nationals. See the full breakdown on <a href="dates.html">Important Dates</a>.</p></div>
+        </div>
+      </div>
     </div>
     <div class="reveal-right">
       <div class="photo-slot">
@@ -147,7 +205,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="brand-badge"><img src="images/logo.png" alt="Green Level TSA emblem"></span>
+        <span class="brand-badge"><img src="logo.png" alt="Green Level TSA emblem"></span>
         <div>
           <strong>Green Level TSA</strong>
           <div style="font-size:0.82rem; color:#8FA3B8;">Green Level High School · Est. 2024</div>
@@ -164,6 +222,42 @@
     <div class="footer-bottom">Green Level High School Technology Student Association. Learning to Lead in a Technical World.</div>
   </div>
 </footer>
+
+<div class="modal-overlay" id="quiz-modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Find your TSA event">
+    <button class="modal-close" aria-label="Close">×</button>
+    <div class="quiz-progress"><span></span><span></span></div>
+
+    <div class="quiz-step" data-field="interest">
+      <h3>What interests you most?</h3>
+      <p>Pick the one that sounds most like you.</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-quiz-option="coding"><span class="quiz-emoji">💻</span> Coding &amp; technology</button>
+        <button class="quiz-option" data-quiz-option="engineering"><span class="quiz-emoji">⚙️</span> Engineering &amp; building things</button>
+        <button class="quiz-option" data-quiz-option="media"><span class="quiz-emoji">🎨</span> Design, video &amp; media</button>
+        <button class="quiz-option" data-quiz-option="leadership"><span class="quiz-emoji">🎤</span> Speaking &amp; leadership</button>
+        <button class="quiz-option" data-quiz-option="science"><span class="quiz-emoji">🧪</span> Science &amp; research</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" data-field="teamwork">
+      <h3>Do you prefer...</h3>
+      <p>This just helps frame the suggestions — most categories offer both.</p>
+      <div class="quiz-options">
+        <button class="quiz-option" data-quiz-option="solo"><span class="quiz-emoji">🧍</span> Working alone</button>
+        <button class="quiz-option" data-quiz-option="team"><span class="quiz-emoji">👥</span> Working with a team</button>
+        <button class="quiz-option" data-quiz-option="either"><span class="quiz-emoji">🤝</span> Either is fine</button>
+      </div>
+    </div>
+
+    <div class="quiz-step quiz-results" data-field="results">
+      <h3>Your recommended events</h3>
+      <p>Based on what you picked — check each one's official rules for team size and eligibility.</p>
+      <ul class="quiz-result-list"></ul>
+      <button class="btn btn-outline quiz-restart" type="button">Start over</button>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
