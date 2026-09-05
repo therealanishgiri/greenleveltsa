@@ -3,287 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Green Level TSA | Technology Student Association</title>
-<meta name="description" content="The Technology Student Association chapter at Green Level High School — STEM competitions, leadership, and community, established 2024.">
+<title>Green Level TSA — Technology Student Association</title>
+<meta name="description" content="Green Level High School's chapter of the Technology Student Association. Learning to lead in a technical world.">
 <link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
+<header class="site-nav">
+  <div class="nav-inner">
     <a href="index.html" class="brand">
-      <img src="images/logo.png" alt="Green Level High School TSA crest">
+      <span class="brand-badge"><img src="images/logo.png" alt="Green Level TSA chapter emblem"></span>
       <span class="brand-text">
-        <strong>Green Level Tech</strong>
-        <span>Est. 2024 &middot; Gators</span>
+        <strong>Green Level TSA</strong>
+        <span>Technology Student Association</span>
       </span>
     </a>
-    <nav aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="dates.html">Important Dates</a></li>
-        <li><a href="events.html">Events</a></li>
-      </ul>
-    </nav>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="dates.html">Important Dates</a></li>
+      <li><a href="events.html">Events</a></li>
+    </ul>
   </div>
 </header>
 
-<main>
+<section class="hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <svg class="hero-trace" viewBox="0 0 1120 500" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M -20 46 L 230 46 L 268 92 L 690 92 L 728 150 L 1140 150" />
+  </svg>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-meta">
+        <span class="tag">Established 2024</span>
+        <span class="tag">42 events for 2026–27</span>
+        <span class="tag">Green Level High School</span>
+      </div>
+      <h1>Learning to lead in a technical world.</h1>
+      <p class="lead">Green Level High School's chapter of the Technology Student Association — where students explore engineering, technology, science, and design through competition, community service, and teamwork.</p>
+      <div class="btn-row" style="margin-top:26px;">
+        <a class="btn btn-primary" href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Follow us on Instagram</a>
+        <a class="btn btn-ghost" href="resources.html#contact">Meet the officers</a>
+      </div>
+    </div>
+    <div class="hero-seal">
+      <img src="images/logo.png" alt="Green Level TSA logo">
+    </div>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <section class="hero grid-bg">
-    <div class="wrap">
+<section id="about">
+  <div class="container split">
+    <div class="reveal-left">
+      <h2>What is TSA?</h2>
+      <p class="lead">TSA is a national Career and Technical Student Organization of middle and high school students who compete in events across science, public speaking, engineering, technology, mathematics, and more — helping members find their passions for the future.</p>
+      <p>Every year, chapters like ours take part in a full slate of competitive events that cover almost every corner of STEM. For the 2026–2027 year, TSA is offering <strong>42 high school events</strong>, ranging from coding and engineering design to debate, video production, and biotechnology — there is genuinely something for every interest.</p>
+      <p>Through ideating, community service, teamwork, and problem solving, our motto is simple:</p>
+      <p class="pull-quote">"Learning to Lead in a Technical World."</p>
+
+      <h3>Why join Green Level TSA?</h3>
+      <ul class="benefit-list" data-reveal-group>
+        <li class="reveal">Compete in real STEM events, from engineering and coding to design and public speaking</li>
+        <li class="reveal">Build leadership experience through officer roles, committees, and chapter projects</li>
+        <li class="reveal">Strengthen a college application or résumé with regional, state, and national recognition</li>
+        <li class="reveal">Give back through community service tied to our national service partner</li>
+        <li class="reveal">Work alongside a team that shares your interest in technology and problem solving</li>
+      </ul>
+      <p style="margin-top:18px;"><span class="todo-tag">Add meeting details</span> &nbsp; <span style="color:var(--muted); font-size:0.9rem;">Chapter meetings: day, time, and room to be added.</span></p>
+    </div>
+    <div class="reveal-right">
+      <div class="photo-slot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg>
+        <strong>Add photo</strong>
+        <small>Chapter meeting or officer team photo</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="background:var(--panel);">
+  <div class="container">
+    <h2>Mission &amp; vision</h2>
+    <div class="panel-pair" style="margin-top:24px;" data-reveal-group>
+      <div class="panel mission reveal-left">
+        <h3>Mission statement</h3>
+        <p>The Technology Student Association fosters personal growth, leadership, and opportunities in Science, Technology, Engineering, and Mathematics (STEM). Members apply and integrate these concepts through co-curricular activities, competitions, and related programs.</p>
+      </div>
+      <div class="panel vision reveal-right">
+        <h3>Vision statement</h3>
+        <p>The Technology Student Association is accelerating student achievement and supporting teachers by providing engaging opportunities to develop STEM skills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="history">
+  <div class="container">
+    <h2>TSA history</h2>
+    <p class="lead">The Technology Student Association, formerly the American Industrial Arts Student Association (AIASA), is the oldest student membership organization dedicated exclusively to students enrolled in technology and engineering education classes in middle and high schools. Its history spans more than four decades.</p>
+
+    <div class="timeline" data-reveal-group>
+      <div class="timeline-item reveal">
+        <span class="year">1958–1978</span>
+        <p>AIASA operates as a sponsored activity of the American Industrial Arts Association (AIAA).</p>
+      </div>
+      <div class="timeline-item reveal">
+        <span class="year">1978</span>
+        <p>AIASA, Inc. is formed as a nonprofit corporation to oversee AIASA as its own independent organization.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <span class="year">1978–1988</span>
+        <p>The organization grows in size, strength, and structure, expanding its impact on students and secondary school programs nationwide.</p>
+      </div>
+      <div class="timeline-item reveal">
+        <span class="year">1988</span>
+        <p>AIASA is renamed the Technology Student Association — the name and mission our chapter carries on today.</p>
+      </div>
+    </div>
+    <p class="citation">Source: <a href="https://tsaweb.org/about/history" target="_blank" rel="noopener">tsaweb.org/about/history</a></p>
+  </div>
+</section>
+
+<section class="partner-strip tight">
+  <div class="container">
+    <div class="partner-row reveal">
+      <span class="partner-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="18" rx="1.5" fill="#C24A3D"/><rect x="3" y="9" width="18" height="6" rx="1.5" fill="#C24A3D"/></svg>
+      </span>
       <div>
-        <span class="mono-label">GREEN LEVEL HIGH SCHOOL &middot; CHARTERED 2024</span>
-        <h1>Learning to Lead in a Technical World.</h1>
-        <p class="lede">
-          Green Level TSA is our school's chapter of the Technology Student
-          Association &mdash; the national Career and Technical Student Organization
-          where members compete, build, and problem-solve their way into STEM.
-          Whatever you're into, from coding to construction, there's an event
-          for it.
-        </p>
-        <div class="btn-row">
-          <a href="resources.html" class="btn btn--primary">Get involved</a>
-          <a href="dates.html" class="btn btn--ghost">See this year's dates</a>
-        </div>
-      </div>
-      <div class="photo-slot photo-slot--hero">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
-        <p>Add a photo of the chapter<br><code>images/hero-club-photo.jpg</code></p>
+        <h3>National service partner</h3>
+        <p>TSA currently holds a national service partnership with the American Red Cross, connecting chapters like ours to community service opportunities nationwide.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- WHAT IS TSA -->
-  <section class="section" id="about">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="mono-label">ABOUT THE CLUB</span>
-        <h2>What is TSA?</h2>
-      </div>
-      <div class="two-col">
-        <div>
-          <p>
-            TSA is a national Career and Technical Student Organization of
-            middle and high school students who engage in events in science,
-            public speaking, engineering, technology, mathematics, and more
-            to find their passions for their futures.
-          </p>
-          <p>
-            Members don't just study STEM &mdash; they apply it. Through
-            ideating, community service, teamwork, and problem solving,
-            chapters like ours turn classroom concepts into real projects,
-            portfolios, and competition entries. Every event is a chance to
-            try on a different kind of technical work and see what fits.
-          </p>
-        </div>
-        <div>
-          <div class="callout">
-            <span class="dot"></span>
-            <div>
-              <p style="margin-bottom:4px;"><strong>TSA offers 42 high school
-              events for the 2026&ndash;2027 year</strong> &mdash; spanning
-              engineering, design, coding, media, and leadership, so there's
-              a real path in for almost any interest.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat"><b>42</b><span>high school competitive events, 2026&ndash;27</span></div>
-        <div class="stat"><b>2024</b><span>Green Level chapter chartered</span></div>
-        <div class="stat"><b>3</b><span>conference levels: regionals, states, nationals</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MISSION & VISION -->
-  <section class="section grid-bg">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="mono-label">WHY WE EXIST</span>
-        <h2>Mission &amp; vision</h2>
-      </div>
-      <div class="two-col">
-        <div class="plaque">
-          <h3>Mission Statement</h3>
-          <p>
-            The Technology Student Association fosters personal growth,
-            leadership, and opportunities in Science, Technology,
-            Engineering, and Mathematics (STEM); members apply and integrate
-            these concepts through co-curricular activities, competitions,
-            and related programs.
-          </p>
-        </div>
-        <div class="plaque">
-          <h3>Vision Statement</h3>
-          <p>
-            The Technology Student Association is accelerating student
-            achievement and supporting teachers by providing engaging
-            opportunities to develop STEM skills.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY JOIN -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="mono-label">FOR MEMBERS</span>
-        <h2>What you get out of it</h2>
-        <p>A CTSO membership is more than a line on a college application &mdash; it's a low-stakes place to practice the skills that make the rest of high school (and beyond) easier.</p>
-      </div>
-      <div class="two-col">
-        <div class="plaque">
-          <h3>Competition experience</h3>
-          <p>
-            Regional and state conferences give you real feedback on real
-            projects &mdash; from engineering builds to debate rounds &mdash;
-            judged by people working in those fields.
-          </p>
-        </div>
-        <div class="plaque">
-          <h3>Leadership &amp; community</h3>
-          <p>
-            Officer roles, team-based events, and required community
-            service give members a chance to lead, collaborate, and give
-            back well before graduation.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHAPTER GALLERY -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="mono-label">CHAPTER LIFE</span>
-        <h2>Around the club</h2>
-        <p>A few snapshots from meetings, workdays, and conferences. Swap in your own photos below.</p>
-      </div>
-      <div class="gallery">
-        <div class="photo-slot">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
-          <p><code>images/gallery-1.jpg</code></p>
-        </div>
-        <div class="photo-slot">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
-          <p><code>images/gallery-2.jpg</code></p>
-        </div>
-        <div class="photo-slot">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
-          <p><code>images/gallery-3.jpg</code></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HISTORY -->
-  <section class="section section--navy">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="mono-label">SINCE 1958</span>
-        <h2>TSA history</h2>
-        <p>
-          The Technology Student Association, formerly the American
-          Industrial Arts Student Association (AIASA), is the oldest
-          student membership organization dedicated exclusively to students
-          enrolled in technology and engineering education classes in
-          middle and high schools.
-        </p>
-      </div>
-
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-year">1958&ndash;78</div>
-          <div class="tl-body">
-            <h4>A sponsored activity</h4>
-            <p>AIASA operated as a sponsored activity of the American Industrial Arts Association (AIAA).</p>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1978</div>
-          <div class="tl-body">
-            <h4>AIASA, Inc. is formed</h4>
-            <p>The nonprofit corporation AIASA, Inc. was formed to oversee the organization on its own, separate from AIAA.</p>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1978&ndash;88</div>
-          <div class="tl-body">
-            <h4>A decade of growth</h4>
-            <p>The organization grew in size, strength, structure, and impact on students and secondary school programs.</p>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-year">1988</div>
-          <div class="tl-body">
-            <h4>Becomes TSA</h4>
-            <p>In the summer of 1988, AIASA officially became the Technology Student Association.</p>
-          </div>
-        </div>
-      </div>
-      <p style="margin-top:34px; font-size:0.85rem; color:#8FA5C2;">
-        Source: <a href="https://tsaweb.org/about/history" style="color:#B7C6DC;">tsaweb.org/about/history</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- SERVICE PARTNER -->
-  <section class="section--tight section">
-    <div class="wrap">
-      <div class="callout">
-        <span class="dot"></span>
-        <div>
-          <h3 style="margin-bottom:8px;">National service partner</h3>
-          <p>TSA currently holds a national service partnership with the <strong>American Red Cross</strong>, giving chapters a shared community service focus alongside their competitive events.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap footer-top">
-    <div>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Green Level TSA crest">
-        <strong>Green Level High School TSA</strong>
+        <span class="brand-badge"><img src="images/logo.png" alt="Green Level TSA emblem"></span>
+        <div>
+          <strong>Green Level TSA</strong>
+          <div style="font-size:0.82rem; color:#8FA3B8;">Green Level High School · Est. 2024</div>
+        </div>
       </div>
-      <p style="color:#8FA0B8; max-width: 34ch; font-size:0.9rem;">Chartered 2024. A student chapter of the Technology Student Association.</p>
-    </div>
-    <div>
-      <h4>Site</h4>
-      <ul>
+      <ul class="footer-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="dates.html">Important Dates</a></li>
         <li><a href="events.html">Events</a></li>
+        <li><a href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
     </div>
-    <div>
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="https://instagram.com/greenleveltsa">Instagram: @greenleveltsa</a></li>
-        <li><a href="mailto:lproctor2@wcpss.net">Advisor: Ms. Proctor</a></li>
-        <li><a href="resources.html#contact">Full contact list &rarr;</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="wrap footer-bottom">
-    <span>&copy; 2026 Green Level High School TSA</span>
-    <span>Learning to Lead in a Technical World</span>
+    <div class="footer-bottom">Green Level High School Technology Student Association. Learning to Lead in a Technical World.</div>
   </div>
 </footer>
 
