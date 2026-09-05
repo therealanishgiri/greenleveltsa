@@ -44,8 +44,10 @@
   <div class="container">
     <p class="lead">Every member's season follows the same path: Regionals, then States, with Nationals open to those who qualify. Here's what each stage means and what's expected of you.</p>
 
-    <div class="stepper">
-      <div class="step regionals">
+    <div class="section-progress" aria-hidden="true"><span></span></div>
+
+    <div class="stepper" id="dates-stepper" data-reveal-group>
+      <div class="step regionals reveal-left">
         <span class="step-number">1</span>
         <span class="tag tag-coral" style="margin-bottom:10px; display:inline-block;">Required</span>
         <div class="step-date">Regionals — Feb 12</div>
@@ -53,7 +55,7 @@
         <p class="step-desc">All members are required to attend Regionals. Event submissions, where applicable, must be completed by this date. The main purpose of Regionals is to get valuable feedback so you can improve your project before States.</p>
       </div>
 
-      <div class="step states">
+      <div class="step states reveal">
         <span class="step-number">2</span>
         <span class="tag tag-coral" style="margin-bottom:10px; display:inline-block;">Required</span>
         <div class="step-date">States — Apr 15–17</div>
@@ -61,7 +63,7 @@
         <p class="step-desc">All members are required to attend States. Placing in the top 3 of your event at States qualifies you to advance to Nationals.</p>
       </div>
 
-      <div class="step nationals">
+      <div class="step nationals reveal-right">
         <span class="step-number">3</span>
         <span class="tag tag-amber" style="margin-bottom:10px; display:inline-block;">Optional · encouraged</span>
         <div class="step-date">Nationals — Jun 23–27</div>
