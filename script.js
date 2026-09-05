@@ -172,3 +172,328 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+/* ==========================================================================
+   Green Level TSA — feature additions (dark mode, stats, event explorer,
+   quiz, officer flip cards, FAQ accordion, countdown)
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* ---------- Dark mode toggle ---------- */
+  var themeToggle = document.querySelector(".theme-toggle");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var current = document.documentElement.getAttribute("data-theme");
+      var next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("glTsaTheme", next); } catch (e) {}
+    });
+  }
+
+  /* ---------- Nav shrink-on-scroll ---------- */
+  var siteNavEl = document.querySelector(".site-nav");
+  if (siteNavEl) {
+    var onNavScroll = function () {
+      siteNavEl.classList.toggle("scrolled", window.scrollY > 12);
+    };
+    onNavScroll();
+    window.addEventListener("scroll", onNavScroll, { passive: true });
+  }
+
+  /* ---------- Animated statistic counters ---------- */
+  var statEls = document.querySelectorAll(".stat-number[data-target]");
+  var reduceMotionStats = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (statEls.length) {
+    var animateStat = function (el) {
+      var target = parseInt(el.getAttribute("data-target"), 10) || 0;
+      var suffix = el.getAttribute("data-suffix") || "";
+      if (reduceMotionStats) {
+        el.textContent = target + suffix;
+        return;
+      }
+      var start = null;
+      var duration = 1400;
+      function step(ts) {
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    };
+    if ("IntersectionObserver" in window) {
+      var statObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateStat(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      statEls.forEach(function (el) { statObserver.observe(el); });
+    } else {
+      statEls.forEach(animateStat);
+    }
+  }
+
+  /* ---------- Event explorer data ---------- */
+  var TSA_EVENTS = [
+    { name: "Engineering Design", cat: "engineering", icon: "⚙️", desc: "Design and build a physical solution to an engineering problem, then present the finished product and documentation to judges." },
+    { name: "Structural Design & Engineering", cat: "engineering", icon: "🏗️", desc: "Plan and construct a scale structure built to hold as much weight as possible within strict material and size limits." },
+    { name: "Dragster", cat: "engineering", icon: "🏎️", desc: "Design, build, and race a small CO2-powered dragster, balancing speed, craftsmanship, and documentation." },
+    { name: "Flight Endurance", cat: "engineering", icon: "🛩️", desc: "Build a rubber-band powered model aircraft engineered to stay airborne as long as possible." },
+    { name: "Transportation Modeling", cat: "engineering", icon: "🚗", desc: "Design and model a future transportation concept that responds to the year's theme and real-world constraints." },
+    { name: "Off the Grid", cat: "engineering", icon: "🔋", desc: "Design a small-scale system that generates or manages energy independent of the traditional power grid." },
+    { name: "Computer Aided Design (CAD) Foundations", cat: "engineering", icon: "📐", desc: "Use CAD software to model a part or assembly to spec, testing precision and technical drawing skills." },
+    { name: "Coding", cat: "coding", icon: "💻", desc: "Take a written test on programming concepts, then solve an onsite coding challenge to show real programming ability." },
+    { name: "Software Development", cat: "coding", icon: "🖥️", desc: "Design and build an original piece of software that solves a real problem, complete with documentation and a live demo." },
+    { name: "Video Game Design", cat: "coding", icon: "🎮", desc: "Create an original playable video game, judged on gameplay, design choices, and technical execution." },
+    { name: "Webmaster", cat: "coding", icon: "🌐", desc: "Design, build, and maintain a website addressing the annual theme, judged on design, usability, and code quality." },
+    { name: "Technology Bowl", cat: "coding", icon: "🧠", desc: "A fast-paced knowledge competition testing technology and engineering concepts, head-to-head with other chapters." },
+    { name: "Digital Photography", cat: "media", icon: "📷", desc: "Submit an original photo portfolio tied to the annual theme, then complete an onsite photo challenge." },
+    { name: "On Demand Video", cat: "media", icon: "🎬", desc: "Write, shoot, and edit a short video responding to a prompt revealed on the day of competition." },
+    { name: "Music Production", cat: "media", icon: "🎵", desc: "Compose and produce an original piece of music, documenting the creative and technical process behind it." },
+    { name: "Community Service Video", cat: "media", icon: "🤝", desc: "Produce a short video highlighting a real community service project your chapter has taken on." },
+    { name: "Children's Stories", cat: "media", icon: "📚", desc: "Write and illustrate an original children's book connected to the year's theme, aimed at a young audience." },
+    { name: "Extemporaneous Speech", cat: "leadership", icon: "🎤", desc: "Draw a topic on the spot and deliver a short, organized speech with minimal preparation time." },
+    { name: "Debating Technological Issues", cat: "leadership", icon: "🗣️", desc: "Research a tech-related issue and argue either side in a structured debate format against another team." },
+    { name: "Career Prep", cat: "leadership", icon: "💼", desc: "Practice real job-search skills — resume, cover letter, and interview — judged like an actual hiring process." },
+    { name: "Chapter Team", cat: "leadership", icon: "🏛️", desc: "A team event testing knowledge of parliamentary procedure and delivering a presentation on the chapter." },
+    { name: "Biotechnology", cat: "science", icon: "🧬", desc: "Research a current biotechnology issue tied to the annual theme and present findings through an original display." },
+    { name: "Forensic Science", cat: "science", icon: "🔬", desc: "Apply forensic science concepts to analyze a simulated case, then present conclusions to judges." }
+  ];
+
+  var CAT_LABELS = {
+    engineering: "Engineering",
+    coding: "Coding & Tech",
+    media: "Design & Media",
+    leadership: "Leadership & Speech",
+    science: "Science"
+  };
+
+  var eventGrid = document.getElementById("event-grid");
+  var eventSearch = document.getElementById("event-search");
+  var eventFilters = document.getElementById("event-filters");
+  var eventModal = document.getElementById("event-modal");
+
+  if (eventGrid) {
+    var activeFilter = "all";
+    var activeQuery = "";
+
+    function renderEvents() {
+      var q = activeQuery.trim().toLowerCase();
+      var filtered = TSA_EVENTS.filter(function (ev) {
+        var matchesCat = activeFilter === "all" || ev.cat === activeFilter;
+        var matchesQuery = !q || ev.name.toLowerCase().indexOf(q) !== -1;
+        return matchesCat && matchesQuery;
+      });
+
+      eventGrid.innerHTML = "";
+      if (!filtered.length) {
+        var none = document.createElement("p");
+        none.className = "no-results";
+        none.textContent = "No events match that search. Try a different word or category.";
+        eventGrid.appendChild(none);
+        return;
+      }
+
+      filtered.forEach(function (ev, i) {
+        var card = document.createElement("button");
+        card.type = "button";
+        card.className = "event-card reveal-scale";
+        card.style.transitionDelay = (Math.min(i, 8) * 60) + "ms";
+        card.setAttribute("data-name", ev.name);
+        card.innerHTML =
+          '<span class="event-icon" aria-hidden="true">' + ev.icon + '</span>' +
+          '<h3>' + ev.name + '</h3>' +
+          '<span class="tag tag-green">' + CAT_LABELS[ev.cat] + '</span>' +
+          '<p>' + ev.desc + '</p>' +
+          '<span class="event-learn-more">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        card.addEventListener("click", function () { openEventModal(ev); });
+        eventGrid.appendChild(card);
+
+        if ("IntersectionObserver" in window && !reduceMotionStats) {
+          var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1 });
+          obs.observe(card);
+        } else {
+          card.classList.add("is-visible");
+        }
+      });
+    }
+
+    if (eventFilters) {
+      eventFilters.querySelectorAll(".chip").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          eventFilters.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("active"); });
+          chip.classList.add("active");
+          activeFilter = chip.getAttribute("data-filter");
+          renderEvents();
+        });
+      });
+    }
+
+    if (eventSearch) {
+      eventSearch.addEventListener("input", function () {
+        activeQuery = eventSearch.value;
+        renderEvents();
+      });
+    }
+
+    renderEvents();
+  }
+
+  function openEventModal(ev) {
+    if (!eventModal) return;
+    eventModal.querySelector(".modal-icon").textContent = ev.icon;
+    eventModal.querySelector(".modal-title").textContent = ev.name;
+    eventModal.querySelector(".modal-cat").textContent = CAT_LABELS[ev.cat];
+    eventModal.querySelector(".modal-desc").textContent = ev.desc;
+    openModal(eventModal);
+  }
+
+  /* ---------- Generic modal open/close ---------- */
+  function openModal(modal) {
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+  function closeModal(modal) {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+  document.querySelectorAll(".modal-overlay").forEach(function (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closeModal(modal);
+    });
+    var closeBtn = modal.querySelector(".modal-close");
+    if (closeBtn) closeBtn.addEventListener("click", function () { closeModal(modal); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".modal-overlay.open").forEach(closeModal);
+    }
+  });
+
+  /* ---------- "Find your event" quiz ---------- */
+  var quizModal = document.getElementById("quiz-modal");
+  var quizTriggers = document.querySelectorAll(".quiz-trigger");
+  if (quizModal && quizTriggers.length) {
+    var quizSteps = quizModal.querySelectorAll(".quiz-step");
+    var quizProgress = quizModal.querySelectorAll(".quiz-progress span");
+    var quizAnswers = {};
+
+    function showQuizStep(index) {
+      quizSteps.forEach(function (s, i) { s.classList.toggle("active", i === index); });
+      quizProgress.forEach(function (p, i) { p.classList.toggle("done", i < index); });
+    }
+
+    function resetQuiz() {
+      quizAnswers = {};
+      showQuizStep(0);
+    }
+
+    quizModal.querySelectorAll("[data-quiz-option]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var step = btn.closest(".quiz-step");
+        var field = step.getAttribute("data-field");
+        quizAnswers[field] = btn.getAttribute("data-quiz-option");
+        var nextIndex = Array.prototype.indexOf.call(quizSteps, step) + 1;
+
+        if (field === "interest") {
+          showQuizStep(nextIndex);
+        } else {
+          // final answer collected -> compute results
+          var interestCat = quizAnswers.interest;
+          var matches = TSA_EVENTS.filter(function (ev) { return ev.cat === interestCat; }).slice(0, 3);
+          var resultsStep = quizModal.querySelector('.quiz-step[data-field="results"]');
+          var list = resultsStep.querySelector(".quiz-result-list");
+          list.innerHTML = "";
+          matches.forEach(function (ev, i) {
+            var li = document.createElement("li");
+            li.innerHTML = '<span class="quiz-result-rank">#' + (i + 1) + '</span><span>' + ev.icon + ' ' + ev.name + '</span>';
+            list.appendChild(li);
+          });
+          showQuizStep(Array.prototype.indexOf.call(quizSteps, resultsStep));
+        }
+      });
+    });
+
+    quizModal.querySelectorAll(".quiz-restart").forEach(function (btn) {
+      btn.addEventListener("click", resetQuiz);
+    });
+
+    quizTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        resetQuiz();
+        openModal(quizModal);
+      });
+    });
+  }
+
+  /* ---------- Officer flip cards (tap support for touch devices) ---------- */
+  document.querySelectorAll(".officer-card").forEach(function (card) {
+    card.addEventListener("click", function (e) {
+      if (window.matchMedia("(hover: none)").matches) {
+        card.classList.toggle("flipped");
+      }
+    });
+  });
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll(".faq-item").forEach(function (item) {
+    var question = item.querySelector(".faq-question");
+    var answer = item.querySelector(".faq-answer");
+    if (!question || !answer) return;
+    question.addEventListener("click", function () {
+      var isOpen = item.classList.contains("open");
+      item.parentElement.querySelectorAll(".faq-item.open").forEach(function (openItem) {
+        if (openItem !== item) {
+          openItem.classList.remove("open");
+          openItem.querySelector(".faq-answer").style.maxHeight = null;
+          openItem.querySelector(".faq-question").setAttribute("aria-expanded", "false");
+        }
+      });
+      item.classList.toggle("open", !isOpen);
+      question.setAttribute("aria-expanded", String(!isOpen));
+      answer.style.maxHeight = !isOpen ? (answer.scrollHeight + "px") : null;
+    });
+  });
+
+  /* ---------- Countdown timer ---------- */
+  var countdownEl = document.querySelector("[data-countdown-to]");
+  if (countdownEl) {
+    var targetDate = new Date(countdownEl.getAttribute("data-countdown-to"));
+    var dEl = countdownEl.querySelector(".cd-days");
+    var hEl = countdownEl.querySelector(".cd-hours");
+    var mEl = countdownEl.querySelector(".cd-mins");
+    var sEl = countdownEl.querySelector(".cd-secs");
+
+    function tick() {
+      var diff = targetDate - new Date();
+      if (diff <= 0) {
+        countdownEl.querySelector(".countdown-units").innerHTML = '<span class="countdown-unit"><strong>🎉</strong><span>Happening now</span></span>';
+        return;
+      }
+      var days = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var secs = Math.floor((diff % 60000) / 1000);
+      if (dEl) dEl.textContent = days;
+      if (hEl) hEl.textContent = String(hours).padStart(2, "0");
+      if (mEl) mEl.textContent = String(mins).padStart(2, "0");
+      if (sEl) sEl.textContent = String(secs).padStart(2, "0");
+    }
+    tick();
+    window.setInterval(tick, 1000);
+  }
+});
