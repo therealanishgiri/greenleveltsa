@@ -10,14 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem("glTsaTheme");
-      if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    } catch (e) {}
-  })();
-</script>
 </head>
 <body>
 
@@ -33,17 +25,19 @@
     <div class="nav-actions">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="what-is-tsa.html">What is TSA</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="history.html">History</a></li>
+        <li class="has-dropdown">
+          <a href="what-is-tsa.html">What is TSA<span class="nav-caret" aria-hidden="true"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="what-is-tsa.html">Overview</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="history.html">History</a></li>
+          </ul>
+        </li>
         <li><a href="dates.html" aria-current="page">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
       </ul>
-      <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8" stroke-linecap="round"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" stroke-linejoin="round"/></svg>
-      </button>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -115,7 +109,7 @@
           <strong>Add photo</strong>
         </div>
         <iframe class="venue-map" loading="lazy" title="Map of East Carolina University, Greenville, NC" src="https://www.openstreetmap.org/export/embed.html?bbox=-77.3900%2C35.5975%2C-77.3500%2C35.6175&amp;layer=mapnik&amp;marker=35.6075%2C-77.3700"></iframe>
-        <p class="venue-address">East 5th Street, Greenville, NC 27858 · <a href="https://www.google.com/maps/search/?api=1&query=East+Carolina+University+Greenville+NC" target="_blank" rel="noopener">Get directions →</a></p>
+        <p class="venue-address">East 5th Street, Greenville, NC 27858 · <a href="https://www.google.com/maps/search/?api=1&query=East+Carolina+University+Greenville+NC" target="_blank" rel="noopener">Get directions <span class="btn-arrow">→</span></a></p>
       </div>
 
       <div class="venue-card reveal-scale">
@@ -126,7 +120,7 @@
           <strong>Add photo</strong>
         </div>
         <iframe class="venue-map" loading="lazy" title="Map of Koury Convention Center, Greensboro, NC" src="https://www.openstreetmap.org/export/embed.html?bbox=-79.8250%2C36.0553%2C-79.7850%2C36.0753&amp;layer=mapnik&amp;marker=36.0653%2C-79.8087"></iframe>
-        <p class="venue-address">3121 West Gate City Blvd, Greensboro, NC 27407 · <a href="https://www.google.com/maps/search/?api=1&query=Koury+Convention+Center+Greensboro+NC" target="_blank" rel="noopener">Get directions →</a></p>
+        <p class="venue-address">3121 West Gate City Blvd, Greensboro, NC 27407 · <a href="https://www.google.com/maps/search/?api=1&query=Koury+Convention+Center+Greensboro+NC" target="_blank" rel="noopener">Get directions <span class="btn-arrow">→</span></a></p>
       </div>
 
       <div class="venue-card reveal-scale">
@@ -137,7 +131,7 @@
           <strong>Add photo</strong>
         </div>
         <iframe class="venue-map" loading="lazy" title="Map of Rosen Shingle Creek, Orlando, FL" src="https://www.openstreetmap.org/export/embed.html?bbox=-81.4609%2C28.4306%2C-81.4209%2C28.4506&amp;layer=mapnik&amp;marker=28.4406%2C-81.4409"></iframe>
-        <p class="venue-address">9939 Universal Blvd, Orlando, FL 32819 · <a href="https://www.google.com/maps/search/?api=1&query=Rosen+Shingle+Creek+Orlando+FL" target="_blank" rel="noopener">Get directions →</a></p>
+        <p class="venue-address">9939 Universal Blvd, Orlando, FL 32819 · <a href="https://www.google.com/maps/search/?api=1&query=Rosen+Shingle+Creek+Orlando+FL" target="_blank" rel="noopener">Get directions <span class="btn-arrow">→</span></a></p>
       </div>
     </div>
   </div>
@@ -149,35 +143,53 @@
     <p class="lead">The bigger picture, from your first meeting to Nationals. <span class="todo-tag">Add chapter dates</span> — fill in exact meeting and internal deadline dates below.</p>
 
     <div class="timeline-horizontal">
-      <div class="timeline-h-item">
+      <div class="timeline-h-item" tabindex="0">
         <span class="dot" aria-hidden="true"></span>
         <span class="month">August</span>
-        <p>Interest meetings — learn what TSA is and how the chapter runs.</p>
+        <div class="timeline-popover">
+          <div class="photo-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><strong>Add photo</strong></div>
+          <p>Interest meetings — learn what TSA is and how the chapter runs.</p>
+        </div>
       </div>
-      <div class="timeline-h-item">
+      <div class="timeline-h-item" tabindex="0">
         <span class="dot" aria-hidden="true"></span>
         <span class="month">September</span>
-        <p>Event selection — members pick which competitive events to prepare for.</p>
+        <div class="timeline-popover">
+          <div class="photo-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><strong>Add photo</strong></div>
+          <p>Event selection — members pick which competitive events to prepare for.</p>
+        </div>
       </div>
-      <div class="timeline-h-item">
+      <div class="timeline-h-item" tabindex="0">
         <span class="dot" aria-hidden="true"></span>
         <span class="month">Oct – Jan</span>
-        <p>Preparation season — teams build, write, code, and rehearse ahead of Regionals.</p>
+        <div class="timeline-popover">
+          <div class="photo-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><strong>Add photo</strong></div>
+          <p>Preparation season — teams build, write, code, and rehearse ahead of Regionals.</p>
+        </div>
       </div>
-      <div class="timeline-h-item">
+      <div class="timeline-h-item" tabindex="0">
         <span class="dot" aria-hidden="true"></span>
         <span class="month">February</span>
-        <p>Regionals at East Carolina University — required for all members.</p>
+        <div class="timeline-popover">
+          <div class="photo-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><strong>Add photo</strong></div>
+          <p>Regionals at East Carolina University — required for all members.</p>
+        </div>
       </div>
-      <div class="timeline-h-item">
+      <div class="timeline-h-item" tabindex="0">
         <span class="dot" aria-hidden="true"></span>
         <span class="month">April</span>
-        <p>States at the Koury Convention Center — top 3 finishers advance to Nationals.</p>
+        <div class="timeline-popover">
+          <div class="photo-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><strong>Add photo</strong></div>
+          <p>States at the Koury Convention Center — top 3 finishers advance to Nationals.</p>
+        </div>
       </div>
-      <div class="timeline-h-item">
+      <div class="timeline-h-item" tabindex="0">
         <span class="dot" aria-hidden="true"></span>
         <span class="month">June</span>
-        <p>Nationals in Orlando — the season's final stage for qualifying members.</p>
+        <div class="timeline-popover">
+          <div class="photo-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg><strong>Add photo</strong></div>
+          <p>Nationals in Orlando — the season's final stage for qualifying members.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -200,6 +212,7 @@
         <li><a href="history.html">History</a></li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
