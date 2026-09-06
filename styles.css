@@ -1401,3 +1401,226 @@ footer {
   .modal-box, .modal-overlay { transition: none !important; }
   .event-card:hover, .quiz-option:hover, .chip:hover { transform: none !important; }
 }
+
+/* ==========================================================================
+   Update: category icons (SVG, no emoji), nav with more links
+   ========================================================================== */
+
+.nav-links a { font-size: 0.9rem; padding: 10px 12px; }
+.nav-links { gap: 2px; }
+
+.event-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--green-tint);
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.event-icon svg { width: 20px; height: 20px; }
+
+.modal-box .event-icon { width: 52px; height: 52px; border-radius: 12px; }
+.modal-box .event-icon svg { width: 26px; height: 26px; }
+
+.quiz-emoji {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: var(--green-tint);
+  color: var(--green-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.quiz-emoji svg { width: 15px; height: 15px; }
+
+/* ==========================================================================
+   Why join — cards (replaces bullet list)
+   ========================================================================== */
+
+.why-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+@media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .why-grid { grid-template-columns: 1fr; } }
+
+.why-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.why-card:hover { transform: translateY(-6px); box-shadow: 0 16px 30px rgba(11,37,69,0.1); border-color: var(--green); }
+.why-card .event-icon { width: 46px; height: 46px; margin-bottom: 14px; }
+.why-card .event-icon svg { width: 22px; height: 22px; }
+.why-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.why-card p { color: var(--muted); font-size: 0.92rem; margin: 0; }
+
+/* ==========================================================================
+   Featured / upcoming section (homepage)
+   ========================================================================== */
+
+.featured-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 760px) { .featured-grid { grid-template-columns: 1fr; } }
+
+.featured-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.featured-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(11,37,69,0.1); }
+.featured-card .tag { margin-bottom: 12px; }
+.featured-card h3 { margin-bottom: 6px; }
+.featured-meta { display: flex; flex-direction: column; gap: 4px; margin: 14px 0 18px; color: var(--muted); font-size: 0.92rem; }
+.featured-meta strong { color: var(--navy); }
+
+/* ==========================================================================
+   Venue cards (Important Dates — photos + maps)
+   ========================================================================== */
+
+.venue-grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 860px) { .venue-grid { grid-template-columns: 1fr; } }
+
+.venue-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.venue-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(11,37,69,0.08); }
+.venue-card h3 { font-size: 1.02rem; margin-bottom: 2px; }
+.venue-card .venue-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 14px; }
+.venue-card .photo-slot { min-height: 140px; padding: 14px; }
+.venue-card .photo-slot svg { width: 22px; height: 22px; }
+
+.venue-map {
+  width: 100%;
+  height: 170px;
+  border: 0;
+  border-radius: 8px;
+  margin-top: 14px;
+  display: block;
+}
+[data-theme="dark"] .venue-map { filter: invert(92%) hue-rotate(180deg) contrast(90%); }
+
+.venue-address { margin-top: 12px; font-size: 0.86rem; color: var(--muted); }
+.venue-address a { font-weight: 600; }
+
+/* ==========================================================================
+   Horizontal season timeline (Important Dates)
+   ========================================================================== */
+
+.timeline-horizontal {
+  position: relative;
+  margin-top: 50px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(160px, 1fr);
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 4px 22px;
+}
+
+.timeline-horizontal::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 17px;
+  height: 2px;
+  background: var(--line);
+}
+
+.timeline-h-item { position: relative; padding-right: 10px; }
+
+.timeline-h-item .dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--green);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 16px;
+  transition: transform .25s ease;
+}
+.timeline-h-item:hover .dot { transform: scale(1.2); }
+
+.timeline-h-item .month {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.98rem;
+  margin-bottom: 4px;
+}
+.timeline-h-item p { color: var(--muted); font-size: 0.85rem; margin: 0; max-width: 22ch; }
+
+@media (max-width: 760px) {
+  .timeline-horizontal { grid-auto-columns: minmax(210px, 1fr); }
+}
+
+/* ==========================================================================
+   Gallery page — masonry of mixed sizes
+   ========================================================================== */
+
+.masonry {
+  margin-top: 28px;
+  columns: 4 220px;
+  column-gap: 16px;
+}
+@media (max-width: 900px) { .masonry { columns: 3 180px; } }
+@media (max-width: 620px) { .masonry { columns: 2 160px; } }
+@media (max-width: 400px) { .masonry { columns: 1; } }
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+.masonry-item .photo-slot { min-height: 0; }
+.masonry-item.h-sm .photo-slot { height: 160px; }
+.masonry-item.h-md .photo-slot { height: 230px; }
+.masonry-item.h-lg .photo-slot { height: 300px; }
+.masonry-item.h-xl .photo-slot { height: 380px; }
+.masonry-item.h-wide .photo-slot { height: 200px; }
+
+.masonry-item .photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.gallery-lightbox img { width: 100%; border-radius: 10px; display: block; }
+.gallery-lightbox .modal-box { max-width: 720px; padding: 16px; }
+
+/* ==========================================================================
+   Reduced motion additions (round 2)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .why-card:hover, .featured-card:hover, .venue-card:hover, .timeline-h-item:hover .dot {
+    transform: none !important;
+  }
+}
