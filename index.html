@@ -10,14 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem("glTsaTheme");
-      if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    } catch (e) {}
-  })();
-</script>
 </head>
 <body>
 
@@ -33,17 +25,19 @@
     <div class="nav-actions">
       <ul class="nav-links">
         <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="what-is-tsa.html">What is TSA</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="history.html">History</a></li>
+        <li class="has-dropdown">
+          <a href="what-is-tsa.html">What is TSA<span class="nav-caret" aria-hidden="true"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="what-is-tsa.html">Overview</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="history.html">History</a></li>
+          </ul>
+        </li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
       </ul>
-      <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8" stroke-linecap="round"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" stroke-linejoin="round"/></svg>
-      </button>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -104,7 +98,7 @@
     <div class="reveal-left">
       <h2>What is TSA?</h2>
       <p class="lead">TSA is a national organization where students explore STEM, leadership, design, technology, and engineering through competitive events and teamwork. Our chapter is Green Level High School's home base for all of it.</p>
-      <a class="btn btn-outline" href="what-is-tsa.html" style="margin-top:8px;">Learn about TSA →</a>
+      <a class="btn btn-outline" href="what-is-tsa.html" style="margin-top:8px;">Learn about TSA <span class="btn-arrow">→</span></a>
     </div>
     <div class="reveal-right">
       <div class="photo-slot">
@@ -158,7 +152,7 @@
           <span><strong>Time:</strong> <span class="todo-tag">Add time</span></span>
           <span><strong>Location:</strong> <span class="todo-tag">Add room</span></span>
         </div>
-        <a class="btn btn-outline" href="dates.html">View all dates →</a>
+        <a class="btn btn-outline" href="dates.html">View all dates <span class="btn-arrow">→</span></a>
       </div>
       <div class="featured-card reveal-right">
         <span class="tag tag-coral">Required · all members</span>
@@ -171,8 +165,19 @@
             <div class="countdown-unit"><strong class="cd-secs">–</strong><span>Secs</span></div>
           </div>
         </div>
-        <a class="btn btn-outline" href="dates.html" style="margin-top:18px;">See the full schedule →</a>
+        <a class="btn btn-outline" href="dates.html" style="margin-top:18px;">See the full schedule <span class="btn-arrow">→</span></a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="background:var(--panel);">
+  <div class="container">
+    <h2>From the chapter</h2>
+    <p class="lead">Recent competitions, projects, and announcements — edit one list in the code to update this.</p>
+    <div class="latest-grid" id="latest-grid"></div>
+    <div style="margin-top:24px;">
+      <a class="btn btn-outline" href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">View all updates <span class="btn-arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -194,6 +199,7 @@
         <li><a href="history.html">History</a></li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
