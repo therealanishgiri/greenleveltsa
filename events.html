@@ -10,14 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem("glTsaTheme");
-      if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    } catch (e) {}
-  })();
-</script>
 </head>
 <body>
 
@@ -33,17 +25,19 @@
     <div class="nav-actions">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="what-is-tsa.html">What is TSA</a></li>
-        <li><a href="events.html" aria-current="page">Events</a></li>
-        <li><a href="history.html">History</a></li>
+        <li class="has-dropdown">
+          <a href="what-is-tsa.html" class="parent-active">What is TSA<span class="nav-caret" aria-hidden="true"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="what-is-tsa.html">Overview</a></li>
+            <li><a href="events.html" aria-current="page">Events</a></li>
+            <li><a href="history.html">History</a></li>
+          </ul>
+        </li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
       </ul>
-      <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8" stroke-linecap="round"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" stroke-linejoin="round"/></svg>
-      </button>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -77,16 +71,27 @@
       </div>
     </div>
 
+    <p class="filter-group-label">Filter by type</p>
+    <div class="filter-chips" id="event-type-filters">
+      <button class="chip" data-type="individual" type="button">Individual</button>
+      <button class="chip" data-type="team" type="button">Team</button>
+      <button class="chip" data-type="beginner" type="button">Beginner Friendly</button>
+      <button class="chip" data-type="presentation" type="button">Presentation</button>
+      <button class="chip" data-type="build" type="button">Build / Design</button>
+      <button class="chip" data-type="test" type="button">Test</button>
+      <button class="chip" data-type="coding" type="button">Coding</button>
+    </div>
+
     <div class="event-grid" id="event-grid" data-reveal-group></div>
 
-    <p class="event-explorer-note">Showing a sample of this year's events. <a href="https://tsaweb.org/competitions" target="_blank" rel="noopener">See the full competitive events guide →</a></p>
+    <p class="event-explorer-note">Showing a sample of this year's events. <a href="https://tsaweb.org/competitions" target="_blank" rel="noopener">See the full competitive events guide <span class="btn-arrow">→</span></a></p>
 
     <div class="quiz-cta">
       <div>
         <h3>Not sure where to start?</h3>
         <p>Answer two quick questions and we'll point you toward events that fit.</p>
       </div>
-      <button class="btn btn-primary quiz-trigger" type="button">Find your event →</button>
+      <button class="btn btn-primary quiz-trigger" type="button">Find your event <span class="btn-arrow">→</span></button>
     </div>
   </div>
 </section>
@@ -114,6 +119,7 @@
         <li><a href="history.html">History</a></li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
@@ -129,6 +135,7 @@
     <h3 class="modal-title" id="event-modal-title"></h3>
     <div class="modal-meta"><span class="tag tag-green modal-cat"></span></div>
     <p class="modal-desc"></p>
+    <div class="modal-meta modal-meta-extra"></div>
   </div>
 </div>
 
