@@ -10,14 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem("glTsaTheme");
-      if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    } catch (e) {}
-  })();
-</script>
 </head>
 <body>
 
@@ -33,17 +25,19 @@
     <div class="nav-actions">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="what-is-tsa.html">What is TSA</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="history.html" aria-current="page">History</a></li>
+        <li class="has-dropdown">
+          <a href="what-is-tsa.html" class="parent-active">What is TSA<span class="nav-caret" aria-hidden="true"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="what-is-tsa.html">Overview</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="history.html" aria-current="page">History</a></li>
+          </ul>
+        </li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
       </ul>
-      <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8" stroke-linecap="round"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" stroke-linejoin="round"/></svg>
-      </button>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -57,17 +51,68 @@
   </div>
 </section>
 
-<nav class="year-tabs-wrap" aria-label="Jump to a school year">
+<section class="tight" id="chapter-timeline-section">
   <div class="container">
-    <div class="year-tabs">
-      <button class="year-tab active" data-year="2023-24" aria-current="true">2023–24</button>
-      <button class="year-tab" data-year="2024-25">2024–25</button>
-      <button class="year-tab" data-year="2025-26">2025–26</button>
-      <button class="year-tab" data-year="2026-27">2026–27</button>
-      <span class="year-tab-indicator" aria-hidden="true"></span>
+    <h2>Our story so far</h2>
+    <p class="lead">Click a year to jump to its photos and recap.</p>
+
+    <div class="chapter-timeline-wrap">
+      <svg class="chapter-timeline-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="4,8 36,34 68,60 96,86" />
+      </svg>
+      <div class="chapter-timeline" data-reveal-group>
+        <button class="chapter-year reveal active" data-year="2023-24" type="button" aria-current="true">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="cy-label"><strong>2024</strong>Chapter Founded</span>
+        </button>
+        <button class="chapter-year reveal" data-year="2024-25" type="button">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="cy-label"><strong>2025</strong>First Full Season</span>
+        </button>
+        <button class="chapter-year reveal" data-year="2025-26" type="button">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="cy-label"><strong>2026</strong>Growing the Chapter</span>
+        </button>
+        <button class="chapter-year reveal" data-year="2026-27" type="button">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="cy-label"><strong>2027</strong>Current Season</span>
+        </button>
+      </div>
+    </div>
+
+    <h3 style="margin-top:56px;">Chapter milestones</h3>
+    <div class="milestone-list" data-reveal-group>
+      <div class="milestone reveal">
+        <span class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 21V4M5 4h13l-3 4 3 4H5" stroke-linejoin="round"/></svg></span>
+        <div>
+          <strong>Chapter Established</strong>
+          <p>Green Level TSA is officially chartered in 2024.</p>
+        </div>
+      </div>
+      <div class="milestone reveal">
+        <span class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M6 4h12v3a6 6 0 0 1-12 0zM6 5H3v1a4 4 0 0 0 3 3.9M18 5h3v1a4 4 0 0 1-3 3.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div>
+          <strong>First Regional Competition</strong>
+          <p><span class="todo-tag">Add details</span> — when and where the chapter first competed at Regionals.</p>
+        </div>
+      </div>
+      <div class="milestone reveal">
+        <span class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-3 5 3-1.5-8.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div>
+          <strong>First State Qualification</strong>
+          <p><span class="todo-tag">Add details</span> — the first event and members to qualify for States.</p>
+        </div>
+      </div>
+      <div class="milestone reveal">
+        <span class="event-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z" stroke-linejoin="round"/></svg></span>
+        <div>
+          <strong>First National Competitor</strong>
+          <p><span class="todo-tag">Add details</span> — the first member or team to represent the chapter at Nationals.</p>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+</section>
 
 <section class="year-block year-2023" data-year="2023-24">
   <div class="container">
@@ -144,6 +189,7 @@
         <li><a href="history.html">History</a></li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
