@@ -10,14 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script>
-  (function () {
-    try {
-      var saved = localStorage.getItem("glTsaTheme");
-      if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
-    } catch (e) {}
-  })();
-</script>
 </head>
 <body>
 
@@ -33,17 +25,19 @@
     <div class="nav-actions">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="what-is-tsa.html">What is TSA</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="history.html">History</a></li>
+        <li class="has-dropdown">
+          <a href="what-is-tsa.html">What is TSA<span class="nav-caret" aria-hidden="true"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="what-is-tsa.html">Overview</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="history.html">History</a></li>
+          </ul>
+        </li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html" aria-current="page">Resources</a></li>
       </ul>
-      <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12H5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8" stroke-linecap="round"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" stroke-linejoin="round"/></svg>
-      </button>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
@@ -97,92 +91,37 @@
       <p><strong>Follow along on Instagram:</strong> <a href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener" style="color:#fff; text-decoration:underline;">@greenleveltsa</a></p>
     </div>
 
-    <p style="color:var(--muted); font-size:0.88rem; margin-top:20px;">Tap or hover a card to flip it.</p>
-    <div class="officer-grid">
-      <div class="officer-card">
-        <div class="officer-card-inner">
-          <div class="officer-face front">
-            <div class="photo-slot small">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg>
-              <strong>Photo</strong>
-            </div>
-            <strong>Ms. Proctor</strong>
-            <span class="tag tag-navy">Advisor · Room 0121</span>
-          </div>
-          <div class="officer-face back">
-            <strong>Ms. Proctor</strong>
-            <div class="roster-meta">
-              <span class="tag tag-navy">Advisor</span>
-              <a href="mailto:lproctor2@wcpss.net">lproctor2@wcpss.net</a>
-            </div>
-            <span class="todo-tag">Add fun fact</span>
-          </div>
-        </div>
-      </div>
+    <p style="margin-top:20px;">Want to reach a specific officer or the advisor? Meet the team on our <a href="officers.html">Officers page</a>.</p>
+  </div>
+</section>
 
-      <div class="officer-card">
-        <div class="officer-card-inner">
-          <div class="officer-face front">
-            <div class="photo-slot small">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg>
-              <strong>Photo</strong>
-            </div>
-            <strong>Esha</strong>
-            <span class="tag tag-green">President</span>
-          </div>
-          <div class="officer-face back">
-            <strong>Esha</strong>
-            <div class="roster-meta">
-              <span class="tag tag-green">President</span>
-              <a href="mailto:espenmatsa@students.wcpss.net">espenmatsa@students.wcpss.net</a>
-            </div>
-            <span class="todo-tag">Add favorite event</span>
-          </div>
-        </div>
+<section style="background:var(--panel);">
+  <div class="container">
+    <h2>Frequently asked questions</h2>
+    <p class="lead">New to TSA? Start here.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">What do we do at meetings? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer"><p>Members work on their competitive events, collaborate with teammates, plan service projects, and get ready for Regionals, States, and Nationals.</p></div>
       </div>
-
-      <div class="officer-card">
-        <div class="officer-card-inner">
-          <div class="officer-face front">
-            <div class="photo-slot small">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg>
-              <strong>Photo</strong>
-            </div>
-            <strong>Naga</strong>
-            <span class="tag tag-green">Vice President</span>
-          </div>
-          <div class="officer-face back">
-            <strong>Naga</strong>
-            <div class="roster-meta">
-              <span class="tag tag-green">Vice President</span>
-              <a href="mailto:nspeddi@students.wcpss.net">nspeddi@students.wcpss.net</a>
-            </div>
-            <span class="todo-tag">Add favorite event</span>
-          </div>
-        </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">Do I need experience? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer"><p>No — TSA has events built for total beginners as well as returning competitors, so there's an entry point for every skill level.</p></div>
       </div>
-
-      <div class="officer-card">
-        <div class="officer-card-inner">
-          <div class="officer-face front">
-            <div class="photo-slot small">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4"/></svg>
-              <strong>Photo</strong>
-            </div>
-            <strong>Deeksha</strong>
-            <span class="tag tag-amber">NC State President</span>
-          </div>
-          <div class="officer-face back">
-            <strong>Deeksha</strong>
-            <div class="roster-meta">
-              <span class="tag tag-amber">North Carolina State President</span>
-              <a href="mailto:dkanamarlapudi@students.wcpss.net">dkanamarlapudi@students.wcpss.net</a>
-            </div>
-            <span class="todo-tag">Add favorite event</span>
-          </div>
-        </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">How do I join? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer"><p>Attend a chapter meeting, talk to an officer, and complete the membership application above.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">What's the difference between Regionals, States, and Nationals? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer"><p>Every member attends Regionals and States; placing in the top 3 at States qualifies you for Nationals. See the full breakdown on <a href="dates.html">Important Dates</a>.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">What events can I compete in? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-answer"><p>TSA offers dozens of competitions across engineering, coding, media, leadership, and science. Browse them on our <a href="events.html#event-explorer">Events page</a>, filter by type, or take the quiz there to get a recommendation.</p></div>
       </div>
     </div>
+    <p style="margin-top:20px;"><span class="todo-tag">Add meeting details</span> &nbsp; <span style="color:var(--muted); font-size:0.9rem;">Chapter meetings: day, time, and room to be added.</span></p>
   </div>
 </section>
 
@@ -203,6 +142,7 @@
         <li><a href="history.html">History</a></li>
         <li><a href="dates.html">Dates</a></li>
         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="officers.html">Officers</a></li>
         <li><a href="resources.html">Resources</a></li>
         <li><a href="https://www.instagram.com/greenleveltsa" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
